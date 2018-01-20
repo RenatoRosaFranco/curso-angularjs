@@ -1,13 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='listaTelefonica'>
 <head>
-	<title>Curso AngularJS</title>
-	<script type="text/javascript" src="lib/angular.min.js">
-	  
-	</script>
+   <title>Curso AngularJS</title>
+   <!-- stylesheet --> 
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+   <!-- javascript -->
+   <script type="text/javascript" src="lib/angular.min.js"></script>
+   <script type="text/javascript" src="lib/index.js"></script>
 </head>
-<body>
- 
-
+<body ng-controller='listaTelefonicaCtrl'
+  class='container'>
+   <div>
+   	  <h4 ng-bind="app"></h4>
+   </div>
+   <table class='table'>
+   	 <thead>
+   	    <th>Nome</th>
+   	 	<th>Telefone</th>
+   	 </thead>
+   	 <tbody>
+   	 	<tr ng-repeat='contato in contatos'>
+   	 	   <td>{{ contato.nome }}</td>
+   	 	   <td>{{ contato.telefone }}</td>
+   	 	</tr>
+   	 </tbody>
+   </table>
+   <form novalidate><br>
+   	 <div class='field'>
+   	 	<label>Nome: {{ nome }}</label><br>
+   	 	<input type='text' class='form-control' placeholder='digite o nome' 
+   	 	 required='required' ng-model='contato.nome'>
+   	 </div>
+   	 <div class='field'>
+   	 	<label>Telefone: {{ telefone }} </label><br>
+   	 	<input type='text' class='form-control' placeholder='digite o telefone'
+   	 	required='required' ng-model='contato.telefone'>
+   	 </div>
+   	 <div class='field'><br>
+   	 	<input type='submit' ng-click='adicionarContato(contato)' 
+   	 	class='btn btn-primary btn-lg top'>
+   	 </div>
+   	 {{ contato }}
+   </form>
 </body>
 </html>
