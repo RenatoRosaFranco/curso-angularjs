@@ -17,28 +17,39 @@
    	 <thead>
    	    <th>Nome</th>
    	 	<th>Telefone</th>
+   	 	<th>Operadora</th>
    	 </thead>
    	 <tbody>
    	 	<tr ng-repeat='contato in contatos'>
    	 	   <td>{{ contato.nome }}</td>
    	 	   <td>{{ contato.telefone }}</td>
+   	 	   <td>{{ contato.operadora.nome }}</td>
    	 	</tr>
    	 </tbody>
    </table>
    <form novalidate><br>
    	 <div class='field'>
    	 	<label>Nome: {{ nome }}</label><br>
-   	 	<input type='text' class='form-control' placeholder='digite o nome' 
+   	 	<input type='text' class='form-control' placeholder='Digite o nome' 
    	 	 required='required' ng-model='contato.nome'>
    	 </div>
    	 <div class='field'>
    	 	<label>Telefone: {{ telefone }} </label><br>
-   	 	<input type='text' class='form-control' placeholder='digite o telefone'
+   	 	<input type='text' class='form-control' placeholder='Digite o telefone'
    	 	required='required' ng-model='contato.telefone'>
+   	 </div>
+   	 <div class='field'>
+   	 	<label>Operadora</label><br>
+   	 	<select class='form-control' required='required'
+   	 	ng-model='contato.operadora' placeholder='Selecionar'
+   	 	ng-options='operadora.nome for operadora in operadoras'>
+   	 	  <option value="">Selecione uma operadora</option>
+   	 	  <option value='operdora.nome'>{{ operadora.nome }}</option>
+   	 	</select>
    	 </div>
    	 <div class='field'><br>
    	 	<input type='submit' ng-click='adicionarContato(contato)' 
-   	 	class='btn btn-primary btn-lg top'>
+   	 	class='btn btn-primary btn-lg top' ng-disabled='!(contato.nome && contato.telefone)'>
    	 </div>
    	 {{ contato }}
    </form>
